@@ -1,12 +1,12 @@
 #include <iostream>
 #include <vector>
-#include <iomanip>  // for scientific notation
+#include <iomanip>  // For std::scientific and std::setprecision
 
 double fibonacci(int n) {
     if (n == 0) return 0;
     if (n == 1) return 1;
 
-    std::vector<double> dp(n + 1);  // using double to handle large numbers
+    std::vector<double> dp(n + 1);
     dp[0] = 0;
     dp[1] = 1;
 
@@ -18,15 +18,19 @@ double fibonacci(int n) {
 }
 
 int main() {
-    int n;
-
-    // Test cases
+    // You can modify this list to include any test cases
     std::vector<int> testCases = {5, 10, 0, 1000};
 
     for (int n : testCases) {
         double result = fibonacci(n);
-        std::cout << "Input: " << n << "\n";
-        std::cout << "Output: " << std::setprecision(15) << std::scientific << result << "\n\n";
+        std::cout << "Input: " << n << " Output: ";
+
+        // Use scientific notation for large numbers like F(1000)
+        if (n >= 100) {
+            std::cout << std::setprecision(15) << std::scientific << result << std::endl;
+        } else {
+            std::cout << static_cast<long long>(result) << std::endl;
+        }
     }
 
     return 0;
